@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface text-slate-800;
+    min-height: 100vh;
+  }
+
+  * {
+    @apply box-border;
+  }
+}
+
+@layer components {
+  /* ── Button variants ─────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm
+           transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:pointer-events-none select-none cursor-pointer;
+  }
+  .btn-primary {
+    @apply btn bg-brand-600 text-white hover:bg-brand-700 active:scale-[.98]
+           focus-visible:ring-brand-500 shadow-md hover:shadow-lg hover:shadow-brand-600/25;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-brand-700 border border-brand-200 hover:bg-brand-50
+           active:scale-[.98] focus-visible:ring-brand-400 shadow-card;
+  }
+  .btn-ghost {
+    @apply btn text-slate-600 hover:bg-slate-100 active:scale-[.98];
+  }
+  .btn-danger {
+    @apply btn bg-red-500 text-white hover:bg-red-600 active:scale-[.98]
+           focus-visible:ring-red-400 shadow-md;
+  }
+  .btn-lg {
+    @apply text-base px-6 py-3.5 rounded-2xl;
+  }
+
+  /* ── Card ────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-2xl border border-slate-100 shadow-card p-6;
+  }
+  .card-hover {
+    @apply card cursor-pointer hover:shadow-card-lg hover:border-brand-200 hover:-translate-y-0.5 transition-all duration-200;
+  }
+
+  /* ── Input ───────────────────────────────────── */
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800
+           placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-400
+           focus:border-transparent transition-all duration-200 text-sm;
+  }
+  .input-lg {
+    @apply input text-base py-3.5 px-5;
+  }
+
+  /* ── Badge ───────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-blue  { @apply badge bg-brand-100 text-brand-700; }
+  .badge-green { @apply badge bg-emerald-100 text-emerald-700; }
+  .badge-amber { @apply badge bg-amber-100 text-amber-700; }
+  .badge-red   { @apply badge bg-red-100 text-red-700; }
+  .badge-slate { @apply badge bg-slate-100 text-slate-600; }
+
+  /* ── Page layouts ────────────────────────────── */
+  .page-center {
+    @apply min-h-screen flex items-center justify-center p-4;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 40%, #e0e7ff 100%);
+  }
+  .page-full {
+    @apply h-screen flex flex-col overflow-hidden bg-slate-950;
+  }
+}
+
+/* ── Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ── Laser dot ─────────────────────────────────── */
+#laser-dot {
+  display: none;
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,.3), 0 0 14px 3px rgba(239,68,68,.5);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: left 50ms linear, top 50ms linear;
+}
+#laser-dot.visible { display: block; }
+
+/* ── Draw canvas overlay ───────────────────────── */
+#draw-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+#draw-canvas.drawing-mode {
+  pointer-events: all;
+  cursor: crosshair;
+}

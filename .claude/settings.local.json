@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_oh-my-claudecode_t__notepad_read",
+      "Bash(mkdir -p /home/ubuntu/.claude/projects/-home-ubuntu-IOT-system/memory && mkdir -p /home/ubuntu/IOT-system/.omc/autopilot && mkdir -p /home/ubuntu/IOT-system/.omc/plans)",
+      "Bash(find /home/ubuntu/IOT-system -maxdepth 4 -not -path \"*/node_modules/*\" -type f 2>/dev/null | sort)",
+      "Bash(mkdir -p /home/ubuntu/IOT-system/server/routes /home/ubuntu/IOT-system/server/middleware /home/ubuntu/IOT-system/server/uploads /home/ubuntu/IOT-system/server/library && mkdir -p /home/ubuntu/IOT-system/client/src/pages /home/ubuntu/IOT-system/client/src/components /home/ubuntu/IOT-system/client/src/lib /home/ubuntu/IOT-system/client/src/hooks && echo \"dirs created\")",
+      "Bash(cp .env.example .env && pnpm install 2>&1)",
+      "Bash(pnpm install 2>&1)",
+      "Bash(pnpm install --no-frozen-lockfile 2>&1 | tail -20)",
+      "Bash(which npm && node --version && npm --version && which npx)",
+      "Bash(npm install -g pnpm 2>&1 | tail -5)",
+      "Bash(pnpm install --no-frozen-lockfile 2>&1 | tail -30)",
+      "Bash(pnpm install --no-frozen-lockfile --filter server --filter client 2>&1 | tail -30)",
+      "Bash(pnpm approve-builds 2>&1 || echo \"approve not needed\")",
+      "Bash(lsof -i :3000 2>/dev/null | head -5 || ss -tlnp | grep 3000)",
+      "Bash(curl -s -X POST http://localhost:3001/api/auth/login -H \"Content-Type: application/json\" -d '{\"username\":\"student\",\"password\":\"student123\"}' && echo \"\" && curl -s -X POST http://localhost:3001/api/auth/login -H \"Content-Type: application/json\" -d '{\"username\":\"teacher\",\"password\":\"wrong\"}')",
+      "Bash(cd /home/ubuntu/IOT-system/client && pnpm exec tsc --noEmit 2>&1 | head -50)",
+      "Bash(pnpm exec vite build 2>&1 | tail -30)",
+      "mcp__plugin_oh-my-claudecode_t__state_list_active",
+      "mcp__plugin_oh-my-claudecode_t__state_clear",
+      "Bash(cd /home/ubuntu/IOT-system && pnpm install 2>&1)",
+      "Bash(which pm2 2>/dev/null && pm2 --version || echo \"pm2 not installed\")",
+      "Bash(mkdir -p /home/ubuntu/IOT-system/logs && chmod +x /home/ubuntu/IOT-system/deploy.sh)",
+      "Bash(bash deploy.sh 2>&1)",
+      "Bash(curl -s http://localhost:3000/api/health && echo \"\" && pm2 status)",
+      "Bash(find /home/ubuntu/IOT-system/test-system-iot -not -path \"*/node_modules/*\" -type f 2>/dev/null | sort | head -100 || echo \"FOLDER_NOT_FOUND\")",
+      "Bash(pnpm build 2>&1 | tail -60)",
+      "Bash(pm2 restart iot-system 2>&1 && pm2 logs iot-system --lines 10 --nostream 2>&1)",
+      "Bash(curl -s -X POST http://localhost:3000/api/auth/login -H 'Content-Type: application/json' -d '{\"username\":\"student\",\"password\":\"student123\"}' | python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('login ok, role=', d['user']['role'], 'token_len=', len\\(d['token']\\)\\)\")",
+      "Bash(curl -s -X POST http://localhost:3000/api/auth/register -H 'Content-Type: application/json' -d '{\"username\":\"newstudent1\",\"password\":\"pass123\",\"role\":\"student\",\"name\":\"新同学\"}' | python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('register ok =', d['success'], 'user=', d.get\\('user',{}\\).get\\('username'\\)\\)\")",
+      "Bash(curl -s http://localhost:3000/api/test/questions | python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('questions:', len\\(d['questions']\\), 'types:', set\\(q['type'] for q in d['questions']\\)\\)\")",
+      "mcp__plugin_oh-my-claudecode_t__state_read",
+      "Bash(pnpm build 2>&1 | tail -20)",
+      "Bash(pm2 restart iot-system 2>&1 && sleep 2 && pm2 logs iot-system --lines 5 --nostream 2>&1)",
+      "Bash(pm2 status 2>/dev/null || echo \"pm2 not running\")",
+      "Bash(pnpm build 2>&1)",
+      "Bash(pm2 restart iot-system 2>&1)",
+      "Bash(grep -c '```' /home/ubuntu/IOT-system/docs/技术文档.md)"
+    ]
+  }
+}

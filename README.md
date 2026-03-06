@@ -37,8 +37,6 @@ IOT-system/
 │   │       └── RoomQR.tsx    # 房间二维码组件（qrcode.react）
 │   └── ...配置文件
 │
-├── teach-system/             # 原有独立演示系统（保留参考）
-└── test-system/              # 原有独立考试系统（保留参考）
 ```
 
 ---

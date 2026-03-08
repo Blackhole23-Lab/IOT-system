@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:revealjs.com)",
+      "WebSearch",
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(npm list -g --depth=0)",
+      "WebFetch(domain:socket.io)",
+      "WebFetch(domain:mozilla.github.io)",
+      "WebFetch(domain:cdn.jsdelivr.net)",
+      "Bash(npm info reveal.js@5.2.1 dist.tarball 2>/dev/null | head -5; npm info pdfjs-dist versions --json 2>/dev/null | tail -c 200)",
+      "Bash(npm info socket.io@4.8.3 version 2>/dev/null; npm info multer version 2>/dev/null; npm info express version 2>/dev/null)",
+      "WebFetch(domain:cdnjs.com)",
+      "Bash(npm install 2>&1)",
+      "Bash(timeout 5 node app.js 2>&1 || true)",
+      "Bash(hostname -I 2>/dev/null; ip route get 1.1.1.1 2>/dev/null | grep -oP 'src \\\\K\\\\S+' || true)",
+      "Bash(sudo ufw status 2>/dev/null || true; sudo iptables -L INPUT -n 2>/dev/null | grep -E '3000|ACCEPT|DROP' | head -20 || true)",
+      "Bash(sudo ufw allow 3000/tcp comment 'teach-system' && sudo ufw status)",
+      "Bash(timeout 5 node /home/ubuntu/teach-system/app.js 2>&1 || true)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" http://localhost:3000/)",
+      "Bash(curl -s http://localhost:3000/api/library)",
+      "Bash(grep -oE 'var\\\\\\(--[a-z-]+\\\\\\)' /home/ubuntu/teach-system/public/css/style.css | sort -u | head -20\ngrep -oE 'var\\\\\\(--[a-z-]+\\\\\\)' /home/ubuntu/teach-system/public/teacher.html | sort -u)",
+      "Bash(python3 -c \"\nimport re\nfor f in ['public/css/style.css','public/teacher.html','public/viewer.html']:\n    txt = open\\(f\\).read\\(\\)\n    vars = sorted\\(set\\(re.findall\\(r'var\\\\\\(--[\\\\w-]+\\\\\\)', txt\\)\\)\\)\n    print\\(f, len\\(vars\\), 'vars'\\)\n    for v in vars: print\\(' ', v\\)\n    print\\(\\)\n\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/css/style.css)"
+    ]
+  }
+}

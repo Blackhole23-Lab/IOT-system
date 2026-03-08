@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  exam-system:
+    # 服务名称
+    container_name: exam-system
+
+    # 构建配置
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # 镜像名称（构建后的镜像标签）
+    image: exam-system:latest
+
+    # 端口映射：宿主机端口:容器端口（0.0.0.0表示监听所有网络接口，支持公网访问）
+    ports:
+      - "0.0.0.0:10080:80"
+
+    # 环境变量配置
+    environment:
+      # PHP配置
+      - PHP_TIMEZONE=Asia/Shanghai
+      - PHP_MEMORY_LIMIT=256M
+      - PHP_UPLOAD_MAX_FILESIZE=10M
+      - PHP_POST_MAX_SIZE=10M
+
+      # 数据库路径（容器内路径）
+      - DB_PATH=/var/www/html/data/exam_system.db
+
+      # Session存储路径
+      - SESSION_SAVE_PATH=/var/www/html/sessions
+
+      # 应用环境（development 或 production）
+      - APP_ENV=production
+
+    # 数据卷挂载（持久化数据）
+    volumes:
+      # SQLite数据库持久化
+      - exam_data:/var/www/html/data
+
+      # 上传文件持久化
+      - exam_uploads:/var/www/html/uploads
+
+      # Session文件持久化（可选，重启后session会失效）
+      - exam_sessions:/var/www/html/sessions
+
+      # 开发模式：挂载源代码实现热重载（生产环境注释掉）
+      # - ./:/var/www/html:ro  # ro=只读，防止容器修改宿主机文件
+
+    # 重启策略
+    restart: unless-stopped
+
+    # 健康检查（覆盖Dockerfile中的配置）
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+    # 资源限制（可选，防止容器占用过多资源）
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+    # 网络配置
+    networks:
+      - exam-network
+
+    # 日志配置（防止日志文件过大）
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# 定义数据卷（Docker管理的持久化存储）
+volumes:
+  exam_data:
+    driver: local
+  exam_uploads:
+    driver: local
+  exam_sessions:
+    driver: local
+
+# 定义网络
+networks:
+  exam-network:
+    driver: bridge

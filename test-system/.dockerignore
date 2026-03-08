@@ -1,0 +1,50 @@
+# Docker相关文件
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# 开发工具
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+
+# 临时文件
+tmp/
+temp/
+
+# 数据库文件（通过volume挂载，不打包进镜像）
+*.db
+*.sqlite
+*.sqlite3
+
+# 上传文件目录（通过volume挂载）
+uploads/*
+
+# Session文件
+sessions/*
+
+# 缓存文件
+cache/
+
+# 环境配置文件（可能包含敏感信息）
+.env
+.env.local
+
+# 文档
+README.md
+docs/
+
+# 测试文件
+tests/
+phpunit.xml

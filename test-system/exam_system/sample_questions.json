@@ -1,0 +1,68 @@
+{
+  "questions": [
+    {
+      "type": "single",
+      "question_text": "PHP是什么类型的语言？",
+      "options": ["编译型", "解释型", "汇编语言", "机器语言"],
+      "answer": "2",
+      "score": 5
+    },
+    {
+      "type": "multiple",
+      "question_text": "以下哪些是PHP框架？",
+      "options": ["Laravel", "Django", "CodeIgniter", "Flask", "Symfony"],
+      "answer": ["1", "3", "5"],
+      "score": 10
+    },
+    {
+      "type": "judge",
+      "question_text": "PHP是开源的",
+      "answer": "true",
+      "score": 5
+    },
+    {
+      "type": "code",
+      "question_text": "编写一个PHP函数计算两个数的和",
+      "answer": "function add($a, $b) { return $a + $b; }",
+      "score": 20
+    },
+    {
+      "type": "essay",
+      "question_text": "简述MVC设计模式",
+      "answer": "MVC是一种软件架构模式，将应用程序分为三个核心组件：模型(Model)负责数据和业务逻辑，视图(View)负责用户界面展示，控制器(Controller)负责处理用户输入和协调模型与视图。",
+      "score": 15
+    },
+    {
+      "type": "single",
+      "question_text": "以下哪个不是PHP的超全局变量？",
+      "options": ["$_GET", "$_POST", "$_REQUEST", "$_GLOBAL"],
+      "answer": "4",
+      "score": 5
+    },
+    {
+      "type": "multiple",
+      "question_text": "PHP中哪些函数可以用于数组操作？",
+      "options": ["array_push()", "array_pop()", "strlen()", "array_merge()", "substr()"],
+      "answer": ["1", "2", "4"],
+      "score": 10
+    },
+    {
+      "type": "judge",
+      "question_text": "PHP支持面向对象编程",
+      "answer": "true",
+      "score": 5
+    },
+    {
+      "type": "code",
+      "question_text": "编写一个PHP函数判断一个数是否为质数",
+      "answer": "function isPrime($n) {\n    if ($n < 2) return false;\n    for ($i = 2; $i <= sqrt($n); $i++) {\n        if ($n % $i == 0) return false;\n    }\n    return true;\n}",
+      "score": 25
+    },
+    {
+      "type": "essay",
+      "question_text": "解释PHP中的命名空间(Namespace)的作用",
+      "answer": "命名空间用于解决类名、函数名和常量名的命名冲突问题。它允许在不同的命名空间中使用相同的名称，提供了一种封装和组织代码的方式，特别适用于大型项目和第三方库的集成。",
+      "score": 15
+    }
+  ]
+}

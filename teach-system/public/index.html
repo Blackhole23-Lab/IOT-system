@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>课堂演示系统</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #080705;
+      --surface:   #100D08;
+      --raised:    #181410;
+      --overlay:   #201B12;
+      --border:    #282318;
+      --border-m:  #3A3226;
+      --border-g:  #6B5218;
+      --gold:      #D4A420;
+      --gold-b:    #F0C040;
+      --gold-dim:  rgba(212,164,32,0.1);
+      --gold-glow: rgba(212,164,32,0.3);
+      --cream:     #EDE6D6;
+      --cream-d:   #A09078;
+      --muted:     #635848;
+      --red:       #C83030;
+      --font-s: 'Cormorant Garamond','STSong','SimSun',Georgia,serif;
+      --font-u: -apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+      --font-m: 'JetBrains Mono','Courier New',monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--font-u);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    /* Grain */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+    /* Grid */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* ── Layout ── */
+    .page {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      width: min(760px, 95vw);
+      min-height: 380px;
+      background: var(--surface);
+      border: 1px solid var(--border-m);
+      position: relative;
+      z-index: 1;
+      animation: appear 0.55s cubic-bezier(0.25,0.1,0.25,1) both;
+    }
+
+    /* Gold top bar */
+    .page::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 16px; right: 16px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold) 40%, var(--gold) 60%, transparent);
+    }
+
+    /* Corner accents */
+    .corner {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-color: var(--border-g);
+      border-style: solid;
+    }
+    .corner-tl { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+    .corner-tr { top: -1px; right: -1px; border-width: 1px 1px 0 0; }
+    .corner-bl { bottom: -1px; left: -1px; border-width: 0 0 1px 1px; }
+    .corner-br { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+    .divider {
+      background: var(--border-m);
+      position: relative;
+    }
+    .divider::after {
+      content: '◆';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--border-g);
+      font-size: 0.5rem;
+      background: var(--surface);
+      padding: 0.4rem 0;
+    }
+
+    /* ── Panels ── */
+    .panel {
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-label {
+      font-family: var(--font-m);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .panel-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .panel-title {
+      font-family: var(--font-s);
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .panel-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Room code display ── */
+    .room-display {
+      background: var(--raised);
+      border: 1px solid var(--border-m);
+      border-radius: 2px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .room-display-label {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      font-family: var(--font-u);
+    }
+    .room-code-chars {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .code-char {
+      font-family: var(--font-m);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      width: 2rem;
+      text-align: center;
+      background: var(--overlay);
+      border: 1px solid var(--border-g);
+      border-radius: 2px;
+      padding: 0.15rem 0;
+      line-height: 1.3;
+      animation: charIn 0.4s cubic-bezier(0.25,0.1,0.25,1) both;
+    }
+    .code-char:nth-child(1) { animation-delay: 0.05s; }
+    .code-char:nth-child(2) { animation-delay: 0.10s; }
+    .code-char:nth-child(3) { animation-delay: 0.15s; }
+    .code-char:nth-child(4) { animation-delay: 0.20s; }
+    .code-char:nth-child(5) { animation-delay: 0.25s; }
+    .code-char:nth-child(6) { animation-delay: 0.30s; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border-radius: 2px;
+      border: 1px solid;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-family: var(--font-u);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: all 180ms cubic-bezier(0.25,0.1,0.25,1);
+      margin-top: 0.6rem;
+    }
+    .btn-primary {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--bg);
+    }
+    .btn-primary:hover {
+      background: var(--gold-b);
+      border-color: var(--gold-b);
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--border-m);
+      color: var(--cream-d);
+    }
+    .btn-secondary:hover {
+      border-color: var(--border-g);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    /* ── Input ── */
+    .input-wrap {
+      position: relative;
+      margin-bottom: 0.25rem;
+    }
+    .input-prefix {
+      position: absolute;
+      left: 0.8rem; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-m);
+      font-size: 0.75rem;
+      color: var(--border-g);
+      pointer-events: none;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.7rem 1rem 0.7rem 2.5rem;
+      background: var(--raised);
+      border: 1px solid var(--border-m);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: var(--font-m);
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      outline: none;
+      text-transform: uppercase;
+      transition: border-color 150ms;
+    }
+    input[type="text"]::placeholder {
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-family: var(--font-u);
+    }
+    input[type="text"]:focus {
+      border-color: var(--border-g);
+      background: var(--overlay);
+    }
+
+    /* ── Branding ── */
+    .brand {
+      position: absolute;
+      bottom: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-m);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+      opacity: 0.5;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes charIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page" role="main">
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <!-- Teacher -->
+    <div class="panel">
+      <div class="panel-label">教师端</div>
+      <div class="panel-title">创建演示房间</div>
+      <p class="panel-sub">生成房间码，开始课堂演示</p>
+
+      <div class="room-display">
+        <div class="room-display-label">房间码</div>
+        <div class="room-code-chars" id="code-chars"></div>
+      </div>
+
+      <button class="btn btn-primary" onclick="createRoom()">进入教师控制台 →</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Student -->
+    <div class="panel">
+      <div class="panel-label">学生端</div>
+      <div class="panel-title">加入观看</div>
+      <p class="panel-sub">输入教师提供的房间码</p>
+
+      <div class="input-wrap">
+        <span class="input-prefix">#</span>
+        <input type="text" id="room-input" placeholder="输入6位房间码" maxlength="6">
+      </div>
+
+      <button class="btn btn-secondary" onclick="joinRoom()">加入课堂 →</button>
+    </div>
+
+    <div class="brand">CLASSROOM SYNC SYSTEM</div>
+  </div>
+
+  <script>
+    function generateCode() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let code = '';
+      for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+      return code;
+    }
+
+    const code = generateCode();
+    const charsEl = document.getElementById('code-chars');
+    code.split('').forEach(ch => {
+      const span = document.createElement('span');
+      span.className = 'code-char';
+      span.textContent = ch;
+      charsEl.appendChild(span);
+    });
+
+    function createRoom() {
+      window.location.href = '/teacher?room=' + code;
+    }
+
+    function joinRoom() {
+      const input = document.getElementById('room-input').value.trim().toUpperCase();
+      if (input.length < 4) { alert('请输入有效的房间码'); return; }
+      window.location.href = '/viewer?room=' + input;
+    }
+
+    document.getElementById('room-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') joinRoom();
+    });
+  </script>
+</body>
+</html>

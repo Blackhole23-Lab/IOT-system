@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学生观看</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/black.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="viewer-page">
+
+  <div id="toolbar">
+    <div id="toolbar-left">
+      <div style="display:flex;align-items:center;gap:0.5rem">
+        <span style="font-size:0.6rem;letter-spacing:0.2em;color:var(--muted);font-family:var(--font-m);text-transform:uppercase">Room</span>
+        <span id="room-code-display" style="font-family:var(--font-m);font-size:0.85rem;color:var(--gold);letter-spacing:0.22em;font-weight:600"></span>
+      </div>
+      <div style="width:1px;height:1rem;background:var(--border-m)"></div>
+      <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--muted)">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+        </svg>
+        <strong id="viewer-count" style="font-family:var(--font-m);color:var(--cream-d);font-weight:400">0</strong>
+        <span>在线</span>
+      </span>
+    </div>
+    <div id="toolbar-right">
+      <span class="status-badge" id="connection-status">连接中</span>
+    </div>
+  </div>
+
+  <div id="presentation-area" style="display:none">
+    <div id="reveal-container" class="reveal">
+      <div id="slides-container" class="slides"></div>
+    </div>
+    <div id="laser-dot"></div>
+  </div>
+
+  <div id="waiting-area">
+    <div class="waiting-content">
+      <span class="waiting-icon">◫</span>
+      <p id="waiting-message">等待教师开始演示</p>
+      <p class="hint">教案上传后将自动同步显示</p>
+      <div class="waiting-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="/js/viewer.js"></script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1772779136905,
+  "projectRoot": "/home/ubuntu/IOT-system",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": "pnpm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "pnpm build",
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "pnpm dev",
+    "scripts": {
+      "dev": "concurrently -k -n SERVER,CLIENT -c cyan,magenta \"pnpm --filter server dev\" \"pnpm --filter client dev\"",
+      "build": "pnpm --filter client build",
+      "start": "pnpm --filter server start",
+      "install:all": "pnpm install"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": true,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "client": {
+      "path": "client",
+      "purpose": null,
+      "fileCount": 7,
+      "lastAccessed": 1772779136892,
+      "keyFiles": [
+        "index.html",
+        "package.json",
+        "postcss.config.js",
+        "tailwind.config.js",
+        "tsconfig.json"
+      ]
+    },
+    "logs": {
+      "path": "logs",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1772779136893,
+      "keyFiles": [
+        "error.log",
+        "out.log"
+      ]
+    },
+    "server": {
+      "path": "server",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1772779136899,
+      "keyFiles": [
+        "index.js",
+        "package.json",
+        "socket.js"
+      ]
+    },
+    "teach-system": {
+      "path": "teach-system",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1772779136901,
+      "keyFiles": [
+        "app.js",
+        "package-lock.json",
+        "package.json"
+      ]
+    },
+    "test-system": {
+      "path": "test-system",
+      "purpose": null,
+      "fileCount": 10,
+      "lastAccessed": 1772779136901,
+      "keyFiles": [
+        "DOCKER_GUIDE.md",
+        "Dockerfile",
+        "PRODUCTION_NOTES.md",
+        "PUBLIC_IP_SETUP.md",
+        "README.md"
+      ]
+    },
+    "test-system-iot": {
+      "path": "test-system-iot",
+      "purpose": null,
+      "fileCount": 10,
+      "lastAccessed": 1772779136901,
+      "keyFiles": [
+        "DOCKER_GUIDE.md",
+        "Dockerfile",
+        "PRODUCTION_NOTES.md",
+        "PUBLIC_IP_SETUP.md",
+        "README.md"
+      ]
+    },
+    "client/dist": {
+      "path": "client/dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 1,
+      "lastAccessed": 1772779136901,
+      "keyFiles": [
+        "index.html"
+      ]
+    },
+    "client/node_modules": {
+      "path": "client/node_modules",
+      "purpose": "Dependencies",
+      "fileCount": 0,
+      "lastAccessed": 1772779136903,
+      "keyFiles": []
+    },
+    "client/src": {
+      "path": "client/src",
+      "purpose": "Source code",
+      "fileCount": 3,
+      "lastAccessed": 1772779136903,
+      "keyFiles": [
+        "App.tsx",
+        "index.css",
+        "main.tsx"
+      ]
+    },
+    "server/middleware": {
+      "path": "server/middleware",
+      "purpose": "Middleware",
+      "fileCount": 0,
+      "lastAccessed": 1772779136903,
+      "keyFiles": []
+    },
+    "server/node_modules": {
+      "path": "server/node_modules",
+      "purpose": "Dependencies",
+      "fileCount": 0,
+      "lastAccessed": 1772779136903,
+      "keyFiles": []
+    },
+    "server/routes": {
+      "path": "server/routes",
+      "purpose": "Route handlers",
+      "fileCount": 3,
+      "lastAccessed": 1772779136904,
+      "keyFiles": [
+        "auth.js",
+        "teach.js",
+        "test.js"
+      ]
+    },
+    "teach-system/node_modules": {
+      "path": "teach-system/node_modules",
+      "purpose": "Dependencies",
+      "fileCount": 1,
+      "lastAccessed": 1772779136904,
+      "keyFiles": []
+    },
+    "teach-system/public": {
+      "path": "teach-system/public",
+      "purpose": "Public files",
+      "fileCount": 3,
+      "lastAccessed": 1772779136904,
+      "keyFiles": [
+        "index.html",
+        "teacher.html",
+        "viewer.html"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "client/src/App.tsx",
+      "accessCount": 16,
+      "lastAccessed": 1772807977480,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/TeacherStudentRecord.tsx",
+      "accessCount": 15,
+      "lastAccessed": 1772786200317,
+      "type": "file"
+    },
+    {
+      "path": "server/routes/test.js",
+      "accessCount": 13,
+      "lastAccessed": 1772807977407,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/TeachStudent.tsx",
+      "accessCount": 12,
+      "lastAccessed": 1772807985414,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/LoginPage.tsx",
+      "accessCount": 10,
+      "lastAccessed": 1772807980450,
+      "type": "file"
+    },
+    {
+      "path": "client/src/lib/auth.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1772807977543,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/StudentDashboard.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1772807980561,
+      "type": "file"
+    },
+    {
+      "path": "server/routes/auth.js",
+      "accessCount": 8,
+      "lastAccessed": 1772807977429,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/TestTeacher.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1772807985469,
+      "type": "file"
+    },
+    {
+      "path": "server/routes/teach.js",
+      "accessCount": 7,
+      "lastAccessed": 1772807977288,
+      "type": "file"
+    },
+    {
+      "path": "server/socket.js",
+      "accessCount": 6,
+      "lastAccessed": 1772807974434,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/TestStudent.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1772807985581,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/TeacherDashboard.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1772807980486,
+      "type": "file"
+    },
+    {
+      "path": "docs/技术文档.md",
+      "accessCount": 4,
+      "lastAccessed": 1772786303484,
+      "type": "file"
+    },
+    {
+      "path": "server/index.js",
+      "accessCount": 4,
+      "lastAccessed": 1772807974387,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/Dashboard.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1772781796559,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/AdminDashboard.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1772807981322,
+      "type": "file"
+    },
+    {
+      "path": "client/src/components/RoomQR.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1772807985607,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/StudentProfile.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1772782039165,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages",
+      "accessCount": 2,
+      "lastAccessed": 1772784845279,
+      "type": "directory"
+    },
+    {
+      "path": "client/src/lib/socket.ts",
+      "accessCount": 2,
+      "lastAccessed": 1772807980416,
+      "type": "file"
+    },
+    {
+      "path": "client/src/pages/TeachTeacher.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1772807985492,
+      "type": "file"
+    },
+    {
+      "path": "题目导入格式说明.md",
+      "accessCount": 1,
+      "lastAccessed": 1772782489519,
+      "type": "file"
+    },
+    {
+      "path": "升级计划.md",
+      "accessCount": 1,
+      "lastAccessed": 1772807945998,
+      "type": "file"
+    },
+    {
+      "path": "升级计划2.md",
+      "accessCount": 1,
+      "lastAccessed": 1772807946052,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 1,
+      "lastAccessed": 1772807974249,
+      "type": "file"
+    },
+    {
+      "path": "server/package.json",
+      "accessCount": 1,
+      "lastAccessed": 1772807974296,
+      "type": "file"
+    },
+    {
+      "path": "client/package.json",
+      "accessCount": 1,
+      "lastAccessed": 1772807974421,
+      "type": "file"
+    },
+    {
+      "path": "client/vite.config.ts",
+      "accessCount": 1,
+      "lastAccessed": 1772807990433,
+      "type": "file"
+    },
+    {
+      "path": "client/src/main.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1772807990524,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

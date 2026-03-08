@@ -1,0 +1,119 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1772811400436,
+  "projectRoot": "/home/ubuntu/IOT-system/server",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "express",
+        "version": "4.21.2",
+        "category": "backend"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "node --watch index.js",
+      "start": "node index.js"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "library": {
+      "path": "library",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1772811400424,
+      "keyFiles": [
+        "NX15漏洞分析（修改版）.pdf",
+        "SECCN G10 VPN 存在未授权非正常端口 81 任意命令注入 漏洞(1).pdf",
+        "SECCN G10 VPN 存在未授权非正常端口 81 任意命令注入 漏洞(2).pdf",
+        "SECCN G10 VPN 存在未授权非正常端口 81 任意命令注入 漏洞.pdf"
+      ]
+    },
+    "middleware": {
+      "path": "middleware",
+      "purpose": "Middleware",
+      "fileCount": 1,
+      "lastAccessed": 1772811400424,
+      "keyFiles": [
+        "auth.js"
+      ]
+    },
+    "prisma": {
+      "path": "prisma",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1772811400430,
+      "keyFiles": [
+        "client.js",
+        "schema.prisma",
+        "seed.js"
+      ]
+    },
+    "routes": {
+      "path": "routes",
+      "purpose": "Route handlers",
+      "fileCount": 4,
+      "lastAccessed": 1772811400430,
+      "keyFiles": [
+        "auth.js",
+        "classrooms.js",
+        "teach.js",
+        "test.js"
+      ]
+    },
+    "uploads": {
+      "path": "uploads",
+      "purpose": null,
+      "fileCount": 12,
+      "lastAccessed": 1772811400433,
+      "keyFiles": [
+        "1772791437959-SECCN G10 VPN 存在未授权非正常端口 81 任意命令注入 漏洞.pdf",
+        "1772791468998-SECCN G10 VPN 存在未授权非正常端口 81 任意命令注入 漏洞.pdf",
+        "1772791490181-NX15漏洞分析（修改版）.pdf",
+        "1772809433891-test.pdf",
+        "1772810249341-test.pdf"
+      ]
+    },
+    "prisma/migrations": {
+      "path": "prisma/migrations",
+      "purpose": "Database migrations",
+      "fileCount": 1,
+      "lastAccessed": 1772811400433,
+      "keyFiles": [
+        "migration_lock.toml"
+      ]
+    }
+  },
+  "hotPaths": [],
+  "userDirectives": []
+}

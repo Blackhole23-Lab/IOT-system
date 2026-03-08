@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"pkill -f \\\"node server/index.js\\\" 2>/dev/null; fuser -k 3000/tcp 2>/dev/null; sleep 1; cd /home/ubuntu/IOT-system && NODE_ENV=production node server/index.js > /tmp/server.log 2>&1 &\",\"des...",
+  "error": "Exit code 144",
+  "timestamp": "2026-03-08T06:51:36.685Z",
+  "retry_count": 1
+}

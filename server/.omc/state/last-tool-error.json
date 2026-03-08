@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"pkill -f \\\"node index.js\\\" 2>/dev/null; sleep 1\\necho \\\"killed\\\"\\npgrep -f \\\"node index.js\\\" || echo \\\"all cleared\\\"\",\"description\":\"终止所有 node 服务器进程\"}",
+  "error": "Exit code 144",
+  "timestamp": "2026-03-06T15:23:23.954Z",
+  "retry_count": 1
+}

@@ -1,0 +1,9 @@
+题型,题目内容,选项1,选项2,选项3,选项4,选项5,选项6,答案,分值
+single,PHP是什么类型的语言？,编译型,解释型,汇编语言,机器语言,,,2,5
+single,以下哪个不是PHP框架？,Laravel,Django,CodeIgniter,Symfony,,,2,5
+multiple,以下哪些是PHP的超全局变量？,$_GET,$_POST,$_SESSION,$_COOKIE,$_FILES,$_SERVER,"1,2,3,4,5,6",10
+multiple,以下哪些是面向对象的特性？,封装,继承,多态,抽象,,,1,2,3,4,10
+judge,PHP是开源的,,,,,,,true,5
+judge,PHP只能用于Web开发,,,,,,,false,5
+code,编写一个PHP函数计算两个数的和,,,,,,,function add($a, $b) { return $a + $b; },20
+essay,简述MVC设计模式的优点,,,,,,,MVC模式将应用程序分为模型、视图和控制器三个部分，实现了业务逻辑、数据和界面显示的分离，提高了代码的可维护性和可扩展性。,15
